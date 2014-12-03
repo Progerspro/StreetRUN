@@ -9,8 +9,8 @@ private:
 
 	SDL_Renderer* MainRenderer = nullptr;
 	bool Success = true;
-	Car Cars;
-	Map Maps;
+	Car MainCar;
+	Map MainMap;
 public:
 	Game();
 	~Game();

@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
 	bool Do_Quit = false;
 	SDL_Event* MainEvent = new SDL_Event;
 	Game TheGame;
-	if (!TheGame.Init("StreetRUN",1020,900,500,100,SDL_WINDOW_SHOWN))
+	if (!TheGame.Init("StreetRUN",1024,900,500,100,SDL_WINDOW_SHOWN))
 	{
 		std::cerr << "Could not init everything because of SDL_Error: \n" << SDL_GetError() << std::endl;
 	}
@@ -35,6 +35,7 @@ int main(int argc, char* argv[])
 			//The main event handler
 			TheGame.Event_Handler(MainEvent);
 		}
+		TheGame.Update();
 		
 		SDL_SetRenderDrawColor(TheGame.GetRenderer(), 255, 255, 255, 255);
 		SDL_RenderClear(TheGame.GetRenderer());

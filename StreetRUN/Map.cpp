@@ -36,10 +36,42 @@ void Map::Render(std::string Index, int PosX, int PosY)
 	src.y = 0;
 
 	SDL_Rect dest;
-	dest.h = 900;
+	dest.h = 1024;
 	dest.w = 1020;
 	dest.x = PosX;
 	dest.y = PosY;
 
 	SDL_RenderCopy(GetRender(), LoadTexture::Instance()->GetTexture(Index), &src, &dest);
+}
+
+void Map::HandleEvents(SDL_Event* LocalEvent)
+{
+	switch (LocalEvent->key.keysym.sym)
+		{
+		case SDLK_q:
+			if (RoadSpeed!=0)
+			RoadSpeed--;
+			break;
+		case SDLK_e:
+			RoadSpeed++;
+			break;
+		}
+}
+
+void Map::MoveTheMap()
+{
+	//Static always 0 at functions
+	static int ScrollOffSet;
+	ScrollOffSet += RoadSpeed;
+	if (ScrollOffSet > LoadTexture::Instance()->GetImageHeight("Map"))
+	{
+		ScrollOffSet = 0;
+		std::cout << "ScrollOffSet = " << ScrollOffSet << std::endl << "-LoadTexture::Instance()->GetImageHeight() = " << 
+			-LoadTexture::Instance()->GetImageHeight("Map") << std::endl;
+	}
+	//For first image
+	std::cout << ScrollOffSet << std::endl;
+	Render("Map",0,ScrollOffSet);
+	//For the next image
+	Render("Map", 0, ScrollOffSet - LoadTexture:: Instance()->GetImageHeight("Map"));
 }
