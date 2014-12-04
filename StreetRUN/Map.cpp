@@ -75,3 +75,8 @@ void Map::MoveTheMap()
 	//For the next image
 	Render("Map", 0, ScrollOffSet - LoadTexture:: Instance()->GetImageHeight("Map"));
 }
+
+int Map::GetRoadSpeed()
+{
+	return RoadSpeed;
+}

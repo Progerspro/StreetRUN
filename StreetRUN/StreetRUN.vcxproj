@@ -86,6 +86,7 @@
     <ClInclude Include="LoadMedia.h" />
     <ClInclude Include="LoadTexture.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="RoadTrafic.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -96,6 +97,7 @@
     <ClCompile Include="LoadMedia.cpp" />
     <ClCompile Include="LoadTexture.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="RoadTrafic.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

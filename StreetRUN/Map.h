@@ -15,5 +15,6 @@ public:
 	void Render(std::string, int, int);
 	void HandleEvents(SDL_Event*);
 	void MoveTheMap();
+	int GetRoadSpeed();
 };
 
