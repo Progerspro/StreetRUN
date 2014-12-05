@@ -10,11 +10,12 @@ LoadFont::LoadFont()
 LoadFont::~LoadFont()
 {
 }
-#pragma region LoadFont
+
+LoadFont* LoadFont::Load_Font_Instance = nullptr;
 
 void LoadFont::FontInit()
 {
-	GetRenderer();
+	Instance();
 	if (TTF_Init() == -1)
 		std::cerr << "Could not init TTF! " << TTF_GetError() << std::endl;
 }
@@ -29,8 +30,15 @@ void LoadFont::Free_LoadFont()
 }
 
 //Load the font
-bool LoadFont::_LoadFont(const std::string Path_To_Font, int Font_Size)
+bool LoadFont::SetFont(const std::string Path_To_Font, int Font_Size)
 {
+	//Init the font
+	if (Font_IsInit == false)
+	{
+		FontInit();
+		Font_IsInit = true;
+	}
+	//END FOT INIT
 	Font = TTF_OpenFont(Path_To_Font.c_str(), Font_Size);
 	if (Font == NULL)
 	{
@@ -67,14 +75,8 @@ bool LoadFont::CreateTextureText(std::string TextIndex)
 }
 
 //Push the text to the container
-bool LoadFont::PushText(const std::string Font_Path, int Font_Size, std::string Text, SDL_Color Text_Color, std::string Index)
+bool LoadFont::PushText(std::string Text, SDL_Color Text_Color, std::string Index)
 {
-	if (!_LoadFont(Path_To_Font, Font_Size))
-	{
-		std::cerr << "Could not LoadFont! Because of SDL_Error: \n" << TTF_GetError << std::endl;
-	}
-	else
-	{
 		if (!CreateSurfaceText(Text, Text_Color, Index))
 		{
 			std::cerr << "Could not make surface from the font!" << std::endl;
@@ -87,7 +89,6 @@ bool LoadFont::PushText(const std::string Font_Path, int Font_Size, std::string 
 				std::cerr << "Could not create texture from font surface!" << std::endl;
 			}
 		}
-	}
 	return Success;
 }
 
@@ -123,9 +124,9 @@ int LoadFont::GetTextHeight(std::string Index)
 }
 
 //Get renderer from the main renderer
-SDL_Renderer* LoadFont::GetRenderer()
+SDL_Renderer* LoadFont::InitRenderer(SDL_Renderer* Render)
 {
-	//LocalRender = Global_Data_LoadMedia::Global_Render;
+	LocalRender = Render;
 	if (LocalRender == NULL)
 	{
 		std::cerr << "ERROR! Could not import MainRender to LocalRender" << std::endl;
@@ -133,5 +134,20 @@ SDL_Renderer* LoadFont::GetRenderer()
 	return LocalRender;
 }
 
-#pragma endregion
+LoadFont* LoadFont::Instance()
+{
+	if (Load_Font_Instance == nullptr)
+	{
+		Load_Font_Instance = new LoadFont;
+		return Load_Font_Instance;
+	}
+	else
+	{
+		return Load_Font_Instance;
+	}
+}
 
+SDL_Renderer* LoadFont::GetRenderer()
+{
+	return LocalRender;
+}

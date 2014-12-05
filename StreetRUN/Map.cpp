@@ -76,7 +76,10 @@ void Map::MoveTheMap()
 	Render("Map", 0, ScrollOffSet - LoadTexture:: Instance()->GetImageHeight("Map"));
 }
 
-int Map::GetRoadSpeed()
+std::string Map::GetRoadSpeed()
 {
-	return RoadSpeed;
+	
+	Stream.str("");
+	Stream << "Скорость = " << RoadSpeed << " Km/h";
+	return Stream.str().c_str();
 }

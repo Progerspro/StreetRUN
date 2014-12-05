@@ -1,10 +1,12 @@
 #pragma once
 
 #include "LoadTexture.h"
+#include <sstream>
 class Map
 {
 private:
 	int RoadSpeed;
+	std::stringstream Stream;
 public:
 	Map();
 	~Map();
@@ -15,6 +17,6 @@ public:
 	void Render(std::string, int, int);
 	void HandleEvents(SDL_Event*);
 	void MoveTheMap();
-	int GetRoadSpeed();
+	std::string GetRoadSpeed();
 };
 

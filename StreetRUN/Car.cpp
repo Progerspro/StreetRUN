@@ -35,46 +35,50 @@ void Car::Render(std::string Index, int LocalPosX, int LocalPosY)
 	SDL_Rect src;
 	SDL_Rect dest;
 	//Default
-	src.h = 190;
-	src.w = 150;
+	src.h = 205;
+	src.w = 100;
 	src.x = 0;
 	src.y = 0;
-	if (ChoosenIndex == "Car")
+	dest.h = 205;
+	dest.w = 100;
+	dest.x = XPos;
+	dest.y = YPos;
+	/*if (ChoosenIndex == "Car")
 	{
-		src.h = 190;
-		src.w = 150;
+		src.h = 205;
+		src.w = 100;
 		src.x = 0;
 		src.y = 0;
 	}
 	if (ChoosenIndex == "Car_Left")
 	{
-		src.h = 190;
-		src.w = 150;
+		src.h = 205;
+		src.w = 100;
 		src.x = 151;
 		src.y = 0;
 	}
 	if (ChoosenIndex == "Car_Right")
 	{
-		src.h = 190;
-		src.w = 150;
+		src.h = 205;
+		src.w = 100;
 		src.x = 302;
 		src.y = 0;
 	}
 	if (LocalPosX == 0 && LocalPosY == 0)
 	{
-		dest.h = 200;
-		dest.w = 200;
+		dest.h = 100;
+		dest.w = 205;
 		dest.x = XPos;
 		dest.y = YPos;
 	}
 	else
 	{
-		dest.h = 200;
-		dest.w = 200;
+		dest.h = 205;
+		dest.w = 100;
 		dest.x = LocalPosX;
 		dest.y = LocalPosY;
 	}
-
+	*/
 	SDL_RenderCopy(GetRender(), LoadTexture::Instance()->GetTexture(Index), &src, &dest);
 }
 

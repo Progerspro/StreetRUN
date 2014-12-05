@@ -1,6 +1,8 @@
 #pragma once
 #include "Car.h"
 #include "Map.h"
+#include "Text.h"
+
 class Game
 {
 private:
@@ -11,6 +13,7 @@ private:
 	bool Success = true;
 	Car MainCar;
 	Map MainMap;
+	Text MainText;
 public:
 	Game();
 	~Game();
