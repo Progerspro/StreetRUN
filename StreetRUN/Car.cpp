@@ -35,50 +35,48 @@ void Car::Render(std::string Index, int LocalPosX, int LocalPosY)
 	SDL_Rect src;
 	SDL_Rect dest;
 	//Default
-	src.h = 205;
-	src.w = 100;
+	src.h = 290;
+	src.w = 150;
 	src.x = 0;
 	src.y = 0;
-	dest.h = 205;
-	dest.w = 100;
-	dest.x = XPos;
-	dest.y = YPos;
-	/*if (ChoosenIndex == "Car")
+	//Src
+	if (ChoosenIndex == "Car")
 	{
-		src.h = 205;
-		src.w = 100;
+		src.h = 290;
+		src.w = 150;
 		src.x = 0;
-		src.y = 0;
-	}
-	if (ChoosenIndex == "Car_Left")
-	{
-		src.h = 205;
-		src.w = 100;
-		src.x = 151;
 		src.y = 0;
 	}
 	if (ChoosenIndex == "Car_Right")
 	{
-		src.h = 205;
-		src.w = 100;
-		src.x = 302;
+		src.h = 290;
+		src.w = 165;
+		src.x = 159;
 		src.y = 0;
 	}
+	if (ChoosenIndex == "Car_Left")
+	{
+		src.h = 290;
+		src.w = 168;
+		src.x = 332;
+		src.y = 0;
+	}
+	
+	//Dest
 	if (LocalPosX == 0 && LocalPosY == 0)
 	{
-		dest.h = 100;
-		dest.w = 205;
+		dest.h = 290;
+		dest.w = 150;
 		dest.x = XPos;
 		dest.y = YPos;
 	}
 	else
 	{
-		dest.h = 205;
-		dest.w = 100;
+		dest.h = 290;
+		dest.w = 150;
 		dest.x = LocalPosX;
 		dest.y = LocalPosY;
 	}
-	*/
 	SDL_RenderCopy(GetRender(), LoadTexture::Instance()->GetTexture(Index), &src, &dest);
 }
 
@@ -192,5 +190,10 @@ void Car::Move()
 	std::cout << "Ypos = " << YPos << std::endl;
 	
 }
+
+/*void Car::Collision_Detection(RoadTrafic* Cars_Collision_Handle)
+{
+
+}*/
 
 

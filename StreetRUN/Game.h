@@ -2,7 +2,7 @@
 #include "Car.h"
 #include "Map.h"
 #include "Text.h"
-
+#include "RoadTrafic.h"
 class Game
 {
 private:
@@ -14,6 +14,7 @@ private:
 	Car MainCar;
 	Map MainMap;
 	Text MainText;
+	RoadTrafic MainTrafic;
 public:
 	Game();
 	~Game();

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LoadTexture.h"
+//#include "RoadTrafic.h"
 class Car
 {
 private:
@@ -13,16 +14,19 @@ private:
 	std::string SpriteIndex[3];
 	std::string ChoosenIndex;
 	const Uint8* KeyBoardState;
+	
 
 public:
 	Car();
 	~Car();
 	
 	SDL_Renderer* GetRender();
+	
 	void Push_Texture(std::string, std::string);
 	SDL_Texture* GetCar(std::string);
 	void Render(std::string, int=0, int=0);
 	void HandleEvents(SDL_Event* event);
 	void Move();
+	//void Collision_Detection(RoadTrafic*);
 };
 
