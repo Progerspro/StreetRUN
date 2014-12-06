@@ -14,7 +14,7 @@ private:
 	Car MainCar;
 	Map MainMap;
 	Text MainText;
-	RoadTrafic MainTrafic;
+	RoadTrafic* MainTrafic[6];
 public:
 	Game();
 	~Game();
