@@ -6,6 +6,7 @@
 
 int main(int argc, char* argv[])
 {
+	int Fps = 0;
 	bool Do_Quit = false;
 	SDL_Event* MainEvent = new SDL_Event;
 	Game TheGame;
@@ -41,6 +42,8 @@ int main(int argc, char* argv[])
 		SDL_RenderClear(TheGame.GetRenderer());
 		TheGame.Render();
 		SDL_RenderPresent(TheGame.GetRenderer());
+		Fps++;
+		TheGame.Push_Fps(Fps);
 	}
 	TheGame.Quit();
 

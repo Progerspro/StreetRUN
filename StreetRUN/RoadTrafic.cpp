@@ -4,40 +4,31 @@
 
 RoadTrafic::RoadTrafic()
 {
-	Destination_Car_Position[0] = { 50,  0, 150, 314 };
-	Destination_Car_Position[1] = { 300, 0, 150, 314 };
-	Destination_Car_Position[2] = { 550, 0, 150, 314 };
-	Destination_Car_Position[3] = { 800, 0, 150, 314 };
-}
 
+	Car_Position_On_Road[0] = { 50, 0, 150, 314 };
+	Car_Position_On_Road[1] = { 300, 0, 150, 314 };
+	Car_Position_On_Road[2] = { 550, 0, 150, 314 };
+	Car_Position_On_Road[3] = { 800, 0, 150, 314 };
+
+	Car_Position_On_Image[0] = { 0, 0, 150, 300 };
+	Car_Position_On_Image[1] = { 0, 0, 150, 338 };
+	Car_Position_On_Image[2] = { 0, 0, 150, 308 };
+	Car_Position_On_Image[3] = { 0, 0, 150, 300 };
+	Car_Position_On_Image[4] = { 0, 0, 150, 313 };
+	Car_Position_On_Image[5] = { 0, 0, 150, 309 };	
+	Car_Pos["Zero_Car"] = Car_Position_On_Image[0];
+	Car_Pos["First_Car"] = Car_Position_On_Image[1];
+	Car_Pos["Second_Car"] = Car_Position_On_Image[2];
+	Car_Pos["Third_Car"] = Car_Position_On_Image[3];
+	Car_Pos["Fourth_Car"] = Car_Position_On_Image[4];
+	Car_Pos["Fifth_Car"] = Car_Position_On_Image[5];
+
+}
 
 RoadTrafic::~RoadTrafic()
 {
-}
 
-void RoadTrafic::Push_Texture(std::string Path, std::string Index)
-{
-	Car::Push_Texture(Path, Index);
 }
-
-void RoadTrafic::HandleCar(std::string Index,int PosX,int PosY,int Width,int Height)
-{
-	//if (Return_PosY() < -300)
-	LocalTexture = Car::GetCar(Index);
-	//Source car pos
-	Source_Car_Position = { PosX, PosY, Width, Height };
-}
-void RoadTrafic::Car_Options(int Car_Speed, int Position_On_Road, int Show_Car_Interval)
-{
-	//Destination car pos
-	MainSpeed = Car_Speed;
-	MainDestination.x = Destination_Car_Position[Position_On_Road].x;
-	MainDestination.w = Destination_Car_Position[Position_On_Road].w;
-	MainDestination.h = Destination_Car_Position[Position_On_Road].h;
-	TimeToRender = Show_Car_Interval;
-}
-
-
 int RoadTrafic::Generate_Random_Number(int Low_Num,int High_Num)
 {
     std::random_device rd;
@@ -48,44 +39,47 @@ int RoadTrafic::Generate_Random_Number(int Low_Num,int High_Num)
 
 }
 
-void RoadTrafic::Render()
+void RoadTrafic::Push_Texture(std::string Path,std::string Index)
 {
-
-	MainDestination.y += MainSpeed;
-	std::cout << "MAINDESTINATION = " << MainDestination.y << std::endl << "MainSpeed = " << MainSpeed << std::endl;
-	if (TimeToRender == 0)
-	SDL_RenderCopy(Car::GetRender(), LocalTexture, &Source_Car_Position, &MainDestination);
+	LoadTexture::Instance()->PushTexture(Path, Index);
 }
 
-int RoadTrafic::Return_PosX()
+
+SDL_Texture* RoadTrafic::Get_Texture(std::string Texture_Index)
 {
-	LPosX = Source_Car_Position.x;
-	return LPosX;
+	return LoadTexture::Instance()->GetTexture(Texture_Index);
 }
 
-int RoadTrafic::Return_PosY()
-{
-	LPosY = Source_Car_Position.y;
-	return LPosY;
-}
-//Bug with divide to zero FIX IT
-int RoadTrafic::After_Seconds(int Sec)
-{
-   const static int Temp = Sec;
-   return Sec % Temp;
-}
 
-//I think i need to move this to the Game.cpp
-void RoadTrafic::Generate_Cars()
+void RoadTrafic::Render_Car(std::string Texture_Index,int Position,int Speed,int Show_Interval)
 {
-	bool Start_Generate;
-	int Generate_Count;
-	if (Start_Generate)
+	Get_Renderer();
+	//Make just one line car with every car as an object
+	//Warning! The game has over 20 fps, this should fix that!
+	if (Car_Position_On_Road[Position].y >= 1024)
 	{
-		for (int a = 0; a < 4; a++)
-		{
-			Render();
-		}
+		Car_Position_On_Road[Position].y = -400;
 	}
+	else
+	{
+		Car_Position_On_Road[Position].y += Speed;
+	}
+
+
+	if (Position <= 3)
+			if (SDL_RenderCopy(LocalRenderer, Get_Texture(Texture_Index), &Car_Pos[Texture_Index], &Car_Position_On_Road[Position]) == -1)
+				cerr << "Some shit happened\n" << SDL_GetError() << endl;
+
 }
+
+void RoadTrafic::Get_Renderer()
+{
+	LocalRenderer = LoadTexture::Instance()->GetRenderer();
+}
+/*
+SDL_Rect RoadTrafic::Get_Car_Pos()
+{
+	return Car_Position_On_Road;
+}
+*/
 

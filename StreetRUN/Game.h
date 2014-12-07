@@ -3,6 +3,7 @@
 #include "Map.h"
 #include "Text.h"
 #include "RoadTrafic.h"
+#include "Timer.h"
 class Game
 {
 private:
@@ -14,7 +15,8 @@ private:
 	Car MainCar;
 	Map MainMap;
 	Text MainText;
-	RoadTrafic* MainTrafic[6];
+	RoadTrafic MainTrafic,*Trafic[4];
+	Timer MainTime;
 public:
 	Game();
 	~Game();
@@ -23,6 +25,7 @@ public:
 
 	bool Init(std::string WindowName,int Window_Width,int Window_Height,int PosX,int PosY,Uint32 Window_Flag);
 	void Push_All_Textures();
+	void Push_Fps(int);
 	void Event_Handler(SDL_Event*);
 	bool Update();
 	bool Render();
