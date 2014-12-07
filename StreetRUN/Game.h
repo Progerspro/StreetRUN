@@ -17,6 +17,7 @@ private:
 	Text MainText;
 	RoadTrafic MainTrafic,*Trafic[4];
 	Timer MainTime;
+	SDL_Rect Temp;
 public:
 	Game();
 	~Game();

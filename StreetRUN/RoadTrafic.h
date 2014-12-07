@@ -19,7 +19,7 @@ public:
 	void Push_Texture(std::string,std::string);
 	SDL_Texture* Get_Texture(std::string);
 	void Get_Renderer();
-	void Render_Car(std::string,int,int,int);
+	SDL_Rect Render_Car(std::string,int,int,int);
 	SDL_Rect Get_Car_Pos();
 };
 

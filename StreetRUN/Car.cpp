@@ -7,6 +7,8 @@ Car::Car()
 	SpriteIndex[0] = "Car";
 	SpriteIndex[1] = "Car_Left";
 	SpriteIndex[2] = "Car_Right"; 
+	XPos = 200;
+	YPos = 200;
 }
 
 
@@ -189,6 +191,26 @@ void Car::Move()
 		YPos -= YVelocity;
 	std::cout << "Ypos = " << YPos << std::endl;
 	
+}
+
+void Car::Collision_Detect(SDL_Rect Collision)
+{
+	/*if (YPos+290 == Collision.y)
+	{
+		MessageBox(NULL, L"Test", L"Test", NULL);
+	}
+	if (YPos + 290 == Collision.y)
+	{
+		MessageBox(NULL, L"Test", L"Test", NULL);
+	}*/
+	if (XPos + 150 >= Collision.x)
+		MessageBox(NULL, L"Test", L"Test", NULL);
+	if (XPos <= (Collision.x + 150))
+		MessageBox(NULL, L"Test", L"Test", NULL);
+	if (YPos + 290 >= Collision.y)
+		MessageBox(NULL, L"Test", L"Test", NULL);
+	if (YPos  <= (Collision.y + 300))
+		MessageBox(NULL, L"Test", L"Test", NULL);
 }
 
 /*void Car::Collision_Detection(RoadTrafic* Cars_Collision_Handle)

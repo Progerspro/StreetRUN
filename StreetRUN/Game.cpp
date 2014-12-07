@@ -97,7 +97,8 @@ bool Game::Render()
 	MainText.Render_Text("FPS", 0, 0);
 	for (int a = 0; a <= 3; a++)
 	{
-		Trafic[a]->Render_Car("Zero_Car", a, MainMap.GetRoadSpeed(), 0);
+		Temp = Trafic[a]->Render_Car("Zero_Car", a, MainMap.GetRoadSpeed(), 0);
+		//MainCar.Collision_Detect(Temp);
 	}
 
 	return true; // TEMP

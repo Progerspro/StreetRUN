@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LoadTexture.h"
+#include <windows.h>
 //#include "RoadTrafic.h"
 class Car
 {
@@ -26,6 +27,7 @@ public:
 	SDL_Texture* GetCar(std::string);
 	void Render(std::string, int=0, int=0);
 	void HandleEvents(SDL_Event* event);
+	void Collision_Detect(SDL_Rect);
 	void Move();
 	//void Collision_Detection(RoadTrafic*);
 };
