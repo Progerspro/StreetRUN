@@ -204,13 +204,17 @@ void Car::Collision_Detect(SDL_Rect Collision)
 		MessageBox(NULL, L"Test", L"Test", NULL);
 	}*/
 	if (XPos + 150 >= Collision.x)
-		MessageBox(NULL, L"Test", L"Test", NULL);
+		std::cout << "XPos = " << XPos + 150 << std::endl << "Collision.x = " << Collision.x << std::endl;
+		//MessageBox(NULL, L"Test", L"Test", NULL);
 	if (XPos <= (Collision.x + 150))
-		MessageBox(NULL, L"Test", L"Test", NULL);
+		std::cout << "XPos = " << XPos << std::endl << "Collision.x = " << Collision.x + 150 << std::endl;
+		//MessageBox(NULL, L"Test", L"Test", NULL);
 	if (YPos + 290 >= Collision.y)
-		MessageBox(NULL, L"Test", L"Test", NULL);
+		std::cout << "YPos = " << YPos + 290 << std::endl << "Collision.y = " << Collision.y << std::endl;
+		//MessageBox(NULL, L"Test", L"Test", NULL);
 	if (YPos  <= (Collision.y + 300))
-		MessageBox(NULL, L"Test", L"Test", NULL);
+		std::cout << "YPos = " << YPos<< std::endl << "Collision.y = " << Collision.y + 300 << std::endl;
+		//MessageBox(NULL, L"Test", L"Test", NULL);
 }
 
 /*void Car::Collision_Detection(RoadTrafic* Cars_Collision_Handle)

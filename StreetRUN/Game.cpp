@@ -92,13 +92,15 @@ bool Game::Render()
 	//Render and move the map!
 	MainMap.MoveTheMap();
 	//Render the car
-	MainCar.Render("CarSprites");
+	
 	MainText.Render_Text("Speed", 30, 880);
 	MainText.Render_Text("FPS", 0, 0);
 	for (int a = 0; a <= 3; a++)
 	{
 		Temp = Trafic[a]->Render_Car("Zero_Car", a, MainMap.GetRoadSpeed(), 0);
-		//MainCar.Collision_Detect(Temp);
+		MainCar.Render("CarSprites");
+		MainCar.Collision_Detect(Temp);
+		
 	}
 
 	return true; // TEMP
