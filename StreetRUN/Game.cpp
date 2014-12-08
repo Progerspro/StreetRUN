@@ -5,7 +5,9 @@
 
 Game::Game()
 {
-	MainTime.Start_Timer();
+	MainTime.Start_Timer(); 
+	for (int a = 0; a < 4; a++)
+		Temp[a] = { 0, 0, 0, 0 };
 }
 
 
@@ -62,7 +64,7 @@ void Game::Push_All_Textures()
 {
 	MainCar.Push_Texture("Img/CarSprites.png", "CarSprites");
 	MainMap.Push_Texture("Img/road.png", "Map"); 
-	MainTrafic.Push_Texture("Img/0.png", "Zero_Car");
+	MainTrafic.Push_Texture("Img/111.png", "Zero_Car");
 	MainTrafic.Push_Texture("Img/1.png", "First_Car");
 	MainTrafic.Push_Texture("Img/2.png", "Second_Car");
 	MainTrafic.Push_Texture("Img/3.png", "Third_Car");
@@ -83,7 +85,8 @@ bool Game::Update()
 	SDL_Color Text_Color = { 255, 255, 255, 255 };
 	MainText.SetText(MainMap.GetRoadSpeed_For_Text(), "Speed", Text_Color);	
 	MainText.SetText(MainTime.Get_FPS(), "FPS", Text_Color);
-	MainCar.Move();
+	for (int a = 0; a < 4;a++)
+	MainCar.Move(Temp);
 	return true; //TEMP
 }
 
@@ -93,13 +96,12 @@ bool Game::Render()
 	MainMap.MoveTheMap();
 	//Render the car
 	
-	MainText.Render_Text("Speed", 30, 880);
+	MainText.Render_Text("Speed", 30, 880); 
 	MainText.Render_Text("FPS", 0, 0);
 	for (int a = 0; a <= 3; a++)
 	{
-		Temp = Trafic[a]->Render_Car("Zero_Car", a, MainMap.GetRoadSpeed(), 0);
+		Temp[a] = Trafic[a]->Render_Car("Zero_Car", a, MainMap.GetRoadSpeed(), 0,MainCar.Car_YPos());
 		MainCar.Render("CarSprites");
-		MainCar.Collision_Detect(Temp);
 		
 	}
 

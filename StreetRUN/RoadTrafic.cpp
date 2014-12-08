@@ -51,19 +51,25 @@ SDL_Texture* RoadTrafic::Get_Texture(std::string Texture_Index)
 }
 
 
-SDL_Rect RoadTrafic::Render_Car(std::string Texture_Index,int Position,int Speed,int Show_Interval)
+SDL_Rect RoadTrafic::Render_Car(std::string Texture_Index,int Position,int Speed,int Show_Interval,int MainCar_Position)
 {
 	Get_Renderer();
 	//Make just one line car with every car as an object
-	//Warning! The game has over 20 fps, this should fix that!
 	if (Car_Position_On_Road[Position].y >= 1024)
 	{
 		Car_Position_On_Road[Position].y = -Generate_Random_Number(400,1500);
 	}
-	else
-	{
-		Car_Position_On_Road[Position].y += Speed;
-	}
+	//else
+	//{
+		//if (MainCar_Position <= Car_Position_On_Road[Position].y + 300)
+		//{
+			//Car_Position_On_Road[Position].y -= Generate_Random_Number(10, 20);
+		//}
+		//else
+		//{
+			Car_Position_On_Road[Position].y += Generate_Random_Number(1, 2);
+		//}
+	//}
 
 
 	if (Position <= 3)

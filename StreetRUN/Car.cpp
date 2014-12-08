@@ -177,7 +177,7 @@ void Car::HandleEvents(SDL_Event* LocalEvent)
 	}
 }
 
-void Car::Move()
+void Car::Move(SDL_Rect* Collision)
 {
 	XPos += XVelocity;
 	YPos += YVelocity;
@@ -185,41 +185,46 @@ void Car::Move()
 	std::cout << "YVEL = " << YVelocity << std::endl;
 	if (XPos < -25 || XPos + 150 > 1005)
 		XPos -= XVelocity;
+	for (int a = 0; a < 4; a++)
+	{
+		if (Collision_Detect(Collision[a]))
+		{
+			std::cout << "Stop" << std::endl;
+			XPos -= XVelocity;
+		}
+	}
 	std::cout << "Xpos = " << XPos << std::endl;
 	
 	if (YPos < -25 || YPos + 190 > 900)
 		YPos -= YVelocity;
+	for (int a = 0; a < 4; a++)
+	{
+		if (Collision_Detect(Collision[a]))
+		{
+			YPos -= YVelocity;
+			std::cout << "Stop" << std::endl;
+		}
+	}
 	std::cout << "Ypos = " << YPos << std::endl;
 	
 }
 
-void Car::Collision_Detect(SDL_Rect Collision)
+bool Car::Collision_Detect(SDL_Rect Collision)
 {
-	/*if (YPos+290 == Collision.y)
-	{
-		MessageBox(NULL, L"Test", L"Test", NULL);
-	}
-	if (YPos + 290 == Collision.y)
-	{
-		MessageBox(NULL, L"Test", L"Test", NULL);
-	}*/
-	if (XPos + 150 >= Collision.x)
-		std::cout << "XPos = " << XPos + 150 << std::endl << "Collision.x = " << Collision.x << std::endl;
-		//MessageBox(NULL, L"Test", L"Test", NULL);
-	if (XPos <= (Collision.x + 150))
-		std::cout << "XPos = " << XPos << std::endl << "Collision.x = " << Collision.x + 150 << std::endl;
-		//MessageBox(NULL, L"Test", L"Test", NULL);
-	if (YPos + 290 >= Collision.y)
-		std::cout << "YPos = " << YPos + 290 << std::endl << "Collision.y = " << Collision.y << std::endl;
-		//MessageBox(NULL, L"Test", L"Test", NULL);
-	if (YPos  <= (Collision.y + 300))
-		std::cout << "YPos = " << YPos<< std::endl << "Collision.y = " << Collision.y + 300 << std::endl;
-		//MessageBox(NULL, L"Test", L"Test", NULL);
+	//Know why its working
+	if (XPos + 150 <= Collision.x)
+		return false;
+	if (XPos >= Collision.x + LoadTexture::Instance()->GetImageWidth("Zero_Car"))
+		return false;
+	if (YPos + 290 <= Collision.y)
+		return false;
+	if (YPos >= Collision.y + LoadTexture::Instance()->GetImageHeight("Zero_Car"))
+		return false;
+	
+	return true;
 }
 
-/*void Car::Collision_Detection(RoadTrafic* Cars_Collision_Handle)
+int Car::Car_YPos()
 {
-
-}*/
-
-
+	return YPos;
+}
