@@ -6,9 +6,9 @@ RoadTrafic::RoadTrafic()
 {
 
 	Car_Position_On_Road[0] = { 50, -400, 150, 314 };
-	Car_Position_On_Road[1] = { 300, -700, 150, 314 };
+	Car_Position_On_Road[1] = { 300, -400, 150, 314 };
 	Car_Position_On_Road[2] = { 550, -900, 150, 314 };
-	Car_Position_On_Road[3] = { 800, -1000, 150, 314 };
+	Car_Position_On_Road[3] = { 800, -2000, 150, 314 };
 
 	Car_Position_On_Image[0] = { 0, 0, 150, 300 };
 	Car_Position_On_Image[1] = { 0, 0, 150, 338 };
@@ -67,7 +67,7 @@ SDL_Rect RoadTrafic::Render_Car(std::string Texture_Index,int Position,int Speed
 		//}
 		//else
 		//{
-			Car_Position_On_Road[Position].y += Generate_Random_Number(1, 2);
+			Car_Position_On_Road[Position].y += Generate_Random_Number(5,10 );
 		//}
 	//}
 

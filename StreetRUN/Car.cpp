@@ -189,8 +189,10 @@ void Car::Move(SDL_Rect* Collision)
 	{
 		if (Collision_Detect(Collision[a]))
 		{
-			std::cout << "Stop" << std::endl;
+			MessageBox(NULL, L"Вы проиграли!", L"Вы проиграли!", NULL);
 			XPos -= XVelocity;
+			Sleep(2000);
+			exit(0);
 		}
 	}
 	std::cout << "Xpos = " << XPos << std::endl;
@@ -201,8 +203,10 @@ void Car::Move(SDL_Rect* Collision)
 	{
 		if (Collision_Detect(Collision[a]))
 		{
+			MessageBox(NULL, L"Вы проиграли!", L"Вы проиграли!", NULL);
 			YPos -= YVelocity;
-			std::cout << "Stop" << std::endl;
+			Sleep(2000);
+			exit(0); 
 		}
 	}
 	std::cout << "Ypos = " << YPos << std::endl;
